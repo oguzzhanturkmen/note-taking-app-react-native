@@ -1,6 +1,7 @@
 # Note Taking App
+<img width="925" alt="Başlıksız-1" src="https://github.com/oguzzhanturkmen/note-taking-app-react-native/assets/111460897/2a13b2b7-49eb-44f4-9ea3-2b58f035e853">
 
-![NoteApp](https://github.com/oguzzhanturkmen/note-taking-app-react-native/assets/111460897/e9b3d34c-54bf-4489-aef8-643f91e939ca)
+
 
 ## Overview
 
