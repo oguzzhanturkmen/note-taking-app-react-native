@@ -8,6 +8,7 @@ import { useFocusEffect } from '@react-navigation/native';
 
 const DrawerContent = ({ navigation  }) => {
   const [notes, setNotes] = useState([]);
+  const [selectedNoteId, setSelectedNoteId] = useState(null);
   const swipeableRefs = new Map();
  
   
@@ -62,7 +63,7 @@ const DrawerContent = ({ navigation  }) => {
             <Text className="text-3xl mx-4 font-bold  text-white p-2">Notes</Text>
             <ScrollView className=""
             contentContainerStyle={{paddingBottom : 30}}>
-                <View className="flex flex-col justify-between mb-2 rounded-2xl mx-4 py-4 bg-neutral-900">
+                <View className="flex flex-col justify-between mb-2 rounded-2xl  mx-1 bg-neutral-900 overflow-hidden">
       {notes.map((note, index) => (
        <Swipeable
        key={note.id}
@@ -74,8 +75,12 @@ const DrawerContent = ({ navigation  }) => {
        friction={100}
        rightThreshold={1}
      >
-        <TouchableOpacity className=" rounded-xl mx-4 py-3  border-b-2 border-neutral-800"
-        key={index} onPress={() => navigation.navigate('NoteScreen', { selectedNote: note })}>
+        <TouchableOpacity className={selectedNoteId === note.id ? " rounded-xl py-3  border-b-2 bg-yellow-600 border-neutral-800 " : " rounded-xl mx-4 py-3  border-b-2 border-neutral-800 "}
+        key={index} onPress={() => {
+          setSelectedNoteId(note.id); // Update the selected note ID
+          navigation.navigate('NoteScreen', { selectedNote: note });
+        }}
+        >
           <Text className="text-white font-bold text-m mx-3 text"
           >{note.title.length > 25 ? note.title.substring(0,25) + "..." : note.title}</Text>
            <Text className="text-neutral-400 text-s mx-3 text">

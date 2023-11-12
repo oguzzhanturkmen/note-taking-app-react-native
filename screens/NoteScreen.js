@@ -149,7 +149,7 @@ const saveCurrentNote = () => {
             
             <TextInput
             
-             className="text-4xl  mx-6 mt-3 mb-2 font-bold  text-white "
+             className="text-4xl  mx-7 mt-3 mb-2 font-bold  text-white "
              ref={headingInputRef} // Attach the ref to the heading input
              value={currentNote.title}
              onChangeText={handleHeadingChange}
@@ -159,15 +159,23 @@ const saveCurrentNote = () => {
             multiline={true}
              />
            
-           
+           <ScrollView
+        scrollEnabled={true}
+        keyboardShouldPersistTaps="handled" // Optional, to handle taps outside the input
+        showsVerticalScrollIndicator={false}
+      >
+
+      
             <TextInput 
             multiline={true} 
             className="text-lg  mx-7 my-3 font-light  text-white "
             ref={noteInputRef} // Attach the ref to the note input
             value={currentNote.content}
             onChangeText={handleContentChange}
-
+            
+            
             />
+</ScrollView>
            
       </SafeAreaView>
    </View>  
