@@ -1,33 +1,16 @@
-// NotesContext.js
+import React, { createContext, useState, useContext } from 'react';
 
-import React, { createContext, useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+const NotesContext = createContext();
 
-export const NotesContext = createContext();
+export const useNotes = () => useContext(NotesContext);
 
 export const NotesProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
+  const [selectedNoteId, setSelectedNoteId] = useState(null);
 
-  const loadNotes = async () => {
-    try {
-      const savedNotes = await AsyncStorage.getItem('@notes');
-      if (savedNotes !== null) {
-        setNotes(JSON.parse(savedNotes));
-      }
-    } catch (e) {
-      console.log('Failed to load notes', e);
-    }
-  };
-
-  useEffect(() => {
-    loadNotes();
-  }, []);
-
-  const value = {
-    notes,
-    setNotes,
-    loadNotes,
-  };
-
-  return <NotesContext.Provider value={value}>{children}</NotesContext.Provider>;
+  return (
+    <NotesContext.Provider value={{ notes, setNotes, selectedNoteId, setSelectedNoteId }}>
+      {children}
+    </NotesContext.Provider>
+  );
 };

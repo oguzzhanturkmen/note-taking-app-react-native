@@ -8,19 +8,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const AUTOSAVE_INTERVAL_MS = 2000; // Autosave interval in milliseconds
+import { useNotes } from "../context/NotesContext"; // Update the path
 
-export default function NoteScreen({ navigation, route}) {
-    const [notes, setNotes] = useState([]); // Array of notes
+export default function NoteScreen({ navigation, route }) {
+  const { notes, setNotes, selectedNoteId, setSelectedNoteId } = useNotes();
     const [currentNote, setCurrentNote] = useState({ id: null, title: '', content: '' });
     const headingInputRef = useRef();
     const noteInputRef = useRef();
     const [enterPressed, setEnterPressed] = useState(false);
     const [isNoteModified, setIsNoteModified] = useState(false);
+    const [isNoteSaved, setIsNoteSaved] = useState(false);
   
     useEffect(() => {
         loadNotes();
         addNewNote();
       }, []);
+     
     
       useEffect(() => {
         loadNotes();
@@ -62,6 +65,8 @@ export default function NoteScreen({ navigation, route}) {
           console.log('Notes saved');
           console.log(notes);
           setIsNoteModified(false);
+          
+          
         } catch (e) {
           console.log('Failed to save notes', e);
         }
@@ -82,7 +87,7 @@ const saveCurrentNote = () => {
       return;
     }
     const updatedNotes = notes.filter(note => note.id !== currentNote.id);
-    const newNotes = [...updatedNotes, currentNote];
+    const newNotes = [currentNote , ...updatedNotes];
     setNotes(newNotes);
     saveNotes(newNotes);  // Save to AsyncStorage
     setIsNoteModified(false);  // Reset the modification flag
