@@ -4,7 +4,7 @@
 
 ## Overview
 
-Welcome to our simple and efficient Note Taking App, designed for those who value simplicity and convenience. This app operates entirely offline, ensuring your notes are private and accessible anytime.
+Welcome to my simple and efficient Note Taking App, designed for those who value simplicity and convenience. This app operates entirely offline, ensuring your notes are private and accessible anytime.
 
 ## Technologies
 
@@ -37,4 +37,4 @@ Welcome to our simple and efficient Note Taking App, designed for those who valu
 
 - **Current Status**: The app is in active development, with a focus on fixing minor bugs and enhancing functionality.
 
-Stay updated as we continuously improve and expand the capabilities of this app. Your feedback and suggestions are always welcome!
+Stay updated as I continuously improve and expand the capabilities of this app. Your feedback and suggestions are always welcome!
